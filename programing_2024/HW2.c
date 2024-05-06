@@ -79,14 +79,14 @@ int main() {
             if (charInput < 'a' || charInput > 'n') {
                 printf("輸入錯誤,請輸入a到n之間的字元\n");
                 getch();
-                continue;
+                scanf(" %c", &charInput);
             }
 
-            for ( c = 'a'; c <= charInput; c++) {
-                for ( spaces = charInput - c; spaces > 0; spaces--) {
+            for ( i = 0; i < charInput - 'a' + 1; i++) {
+                for ( j = charInput - 'a'; j > i; j--) {
                     printf(" ");
                 }
-                for ( ch = 'a'; ch <= c; ch++) {
+                for ( ch = charInput -i; ch <= charInput; ch++) {
                     printf("%c", ch);
                 }
                 printf("\n");
@@ -106,13 +106,13 @@ int main() {
             if (n < 1 || n > 9) {
                 printf("輸入錯誤,請輸入1到9之間的整數\n");
                 getch();
-                continue;
+                scanf("%d", &n);
             }
 
             
             for ( i = 1; i <= n; i++) {
                 for ( j = 1; j <= n; j++) {
-                    printf("%3d ", i * j);
+                    printf("%d*%d=%3d ",i,j, i * j);
                 }
                 printf("\n");
             }
@@ -124,7 +124,7 @@ int main() {
             system("cls");
             // system("cls"); // Windows
 
-            printf("Continue? (y/n)\n");
+            printf("是否要繼續程式? (y/n)\n");
             scanf(" %c", &charInput);
 
             if (charInput == 'y' || charInput == 'Y') {
