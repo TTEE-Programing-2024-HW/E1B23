@@ -147,10 +147,17 @@ int arrangeSeats(int neededSeats) {
                 }
             }
             return 1;
-        } else {
+        } else{
+        	for (i = 0; i < SEAT_ROWS; ++i) {
+                for (j = 0; j < SEAT_COLS; ++j) {
+                    if (seats[i][j] == '@') {
+                        seats[i][j] = '-';
+                        }
+                }
+            }
             return 0;
         }
-    } else {
+    } else{
         printf("抱歉，沒有可安排的座位。\n");
         return 0;
     }
