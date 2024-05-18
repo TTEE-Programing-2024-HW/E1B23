@@ -14,7 +14,8 @@ char seats[SEAT_ROWS][SEAT_COLS];
 void initializeSeats() {
     memset(seats, '-', sizeof(seats));
     srand(time(NULL));
-    for (int i = 0; i < 10; ++i) {
+    int i;
+    for (i = 0; i < 10; ++i) {
         int r, c;
         do {
             r = rand() % SEAT_ROWS;
@@ -27,9 +28,10 @@ void initializeSeats() {
 // 顯示座位表
 void displaySeats() {
     printf("\\123456789\n");
-    for (int i = 0; i < SEAT_ROWS; ++i) {
+    int i,j;
+    for (i = 0; i < SEAT_ROWS; ++i) {
         printf("%d", SEAT_ROWS - i);
-        for (int j = 0; j < SEAT_COLS; ++j) {
+        for (j = 0; j < SEAT_COLS; ++j) {
             printf("%c", seats[i][j]);
         }
         printf("\n");
@@ -54,14 +56,15 @@ void mainMenu() {
 // 檢查密碼
 int checkPassword() {
     char input[10];
-    for (int tries = 0; tries < MAX_TRIES; ++tries) {
+    int tries;
+    for (tries = 0; tries < MAX_TRIES; ++tries) {
         printf("輸入密碼: ");
         scanf("%s", input);
         if (strcmp(input, PASSWORD) == 0) {
             printf("歡迎!\n");
             return 1;
         } else {
-            printf("密碼錯誤!還有%d次機會!\n",MAX_TRIES-tries);
+            printf("密碼錯誤!還有%d次機會!\n",MAX_TRIES-tries-1);
         }
     }
     printf("次數用盡,正在離開程式...\n");
@@ -72,12 +75,13 @@ int checkPassword() {
 int arrangeSeats(int neededSeats) {
     int found = 0;
     int startRow = -1, startCol = -1;
+    int i,j,k;
 
     if (neededSeats == 1 || neededSeats == 2 || neededSeats == 3) {
-        for (int i = 0; i < SEAT_ROWS && !found; ++i) {
-            for (int j = 0; j <= SEAT_COLS - neededSeats; ++j) {
+        for (i = 0; i < SEAT_ROWS && !found; ++i) {
+            for (j = 0; j <= SEAT_COLS - neededSeats; ++j) {
                 int available = 1;
-                for (int k = 0; k < neededSeats; ++k) {
+                for (k = 0; k < neededSeats; ++k) {
                     if (seats[i][j + k] != '-') {
                         available = 0;
                         break;
@@ -92,10 +96,10 @@ int arrangeSeats(int neededSeats) {
             }
         }
     } else if (neededSeats == 4) {
-        for (int i = 0; i < SEAT_ROWS && !found; ++i) {
-            for (int j = 0; j <= SEAT_COLS - 4; ++j) {
+        for (i = 0; i < SEAT_ROWS && !found; ++i) {
+            for (j = 0; j <= SEAT_COLS - 4; ++j) {
                 int available = 1;
-                for (int k = 0; k < 4; ++k) {
+                for (k = 0; k < 4; ++k) {
                     if (seats[i][j + k] != '-') {
                         available = 0;
                         break;
@@ -109,7 +113,7 @@ int arrangeSeats(int neededSeats) {
                 }
             }
             if (!found && i < SEAT_ROWS - 1) {
-                for (int j = 0; j < SEAT_COLS; ++j) {
+                for (j = 0; j < SEAT_COLS; ++j) {
                     if (seats[i][j] == '-' && seats[i + 1][j] == '-') {
                         found = 1;
                         startRow = i;
@@ -122,7 +126,7 @@ int arrangeSeats(int neededSeats) {
     }
 
     if (found) {
-        for (int i = 0; i < neededSeats; ++i) {
+        for (i = 0; i < neededSeats; ++i) {
             if (neededSeats == 4 && startCol == -1) {
                 seats[startRow][startCol + i] = '@';
                 if (i == 1) startRow++;
@@ -135,8 +139,8 @@ int arrangeSeats(int neededSeats) {
         printf("您確定要這個座位嗎? (y/n): ");
         scanf(" %c", &response);
         if (response == 'y' || response == 'Y') {
-            for (int i = 0; i < SEAT_ROWS; ++i) {
-                for (int j = 0; j < SEAT_COLS; ++j) {
+            for (i = 0; i < SEAT_ROWS; ++i) {
+                for (j = 0; j < SEAT_COLS; ++j) {
                     if (seats[i][j] == '@') {
                         seats[i][j] = '*';
                     }
@@ -154,8 +158,8 @@ int arrangeSeats(int neededSeats) {
 
 // 使用者自行選擇座位
 int chooseSeats(int seatCount) {
-    int row, col;
-    for (int i = 0; i < seatCount; ++i) {
+    int row, col, i, j;
+    for (i = 0; i < seatCount; ++i) {
         while (1) {
             printf("輸入想要預定的座位（行-列） %d: ", i + 1);
             scanf("%d-%d", &row, &col);
@@ -172,8 +176,8 @@ int chooseSeats(int seatCount) {
     printf("如果選擇完畢請按任意鍵以繼續...\n");
     getchar();
     getchar();
-    for (int i = 0; i < SEAT_ROWS; ++i) {
-        for (int j = 0; j < SEAT_COLS; ++j) {
+    for (i = 0; i < SEAT_ROWS; ++i) {
+        for (j = 0; j < SEAT_COLS; ++j) {
             if (seats[i][j] == '@') {
                 seats[i][j] = '*';
             }
