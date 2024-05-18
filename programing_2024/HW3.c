@@ -49,4 +49,19 @@ int main(){
             return 0;
         }
     } while (1);
+    while (1) {
+        // 步驟2：顯示主選單
+        system("cls");
+        // system("cls"); // Windows
+
+        printf("--------------------------\n");
+        printf("->  a. 畫出直角三角形     \n");
+        printf("->  b. 顯示乘法表         \n");
+        printf("->  c. 結束               \n");
+        printf("--------------------------\n");
+
+        char choice;
+        scanf(" %c", &choice);
+        } 
 }
+
