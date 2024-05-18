@@ -55,9 +55,10 @@ int main(){
         // system("cls"); // Windows
 
         printf("--------------------------\n");
-        printf("->  a. 畫出直角三角形     \n");
-        printf("->  b. 顯示乘法表         \n");
-        printf("->  c. 結束               \n");
+        printf("->  a. Available seats    \n");
+        printf("->  b. Arrange for you    \n");
+        printf("->  c. Choose by yourself \n");
+        printf("->  d. Exit               \n");
         printf("--------------------------\n");
 
         char choice;
