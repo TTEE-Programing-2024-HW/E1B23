@@ -40,7 +40,7 @@ int password_protection() {
 
 // 清除螢幕
 void clear_screen() {
-    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    system("cls");
 }
 
 // 主選單
@@ -61,6 +61,7 @@ float calculate_average(int math, int physics, int english) {
 void main_menu() {
     char choice;
     while (1) {
+    	clear_screen();
         printf("------------[Grade System]----------\n");
         printf("    |  a. Enter student grades             |\n");
         printf("    |  b. Display student grades         |\n");
@@ -98,7 +99,7 @@ void main_menu() {
 // 輸入學生成績
 void enter_student_grades() {
     clear_screen();
-    int n;
+    int n,i;
     printf("請輸入學生人數（5~10）: ");
     while (1) {
         scanf("%d", &n);
@@ -108,7 +109,7 @@ void enter_student_grades() {
         printf("請輸入5到10之間的整數: ");
     }
 
-    for (int i = 0; i < n; i++) {
+    for ( i = 0; i < n; i++) {
         printf("請輸入學生姓名: ");
         scanf("%s", students[student_count].name);
 
@@ -157,10 +158,11 @@ void enter_student_grades() {
 // 顯示學生成績
 void display_student_grades() {
     clear_screen();
+    int i;
     if (student_count == 0) {
         printf("目前沒有學生資料。\n");
     } else {
-        for (int i = 0; i < student_count; i++) {
+        for ( i = 0; i < student_count; i++) {
             printf("姓名: %s, 學號: %d, 數學: %d, 物理: %d, 英文: %d, 平均: %.1f\n", 
                 students[i].name, students[i].student_id, students[i].math, students[i].physics, students[i].english, students[i].average);
         }
@@ -178,8 +180,9 @@ void search_student_grades() {
     printf("請輸入要搜尋的學生姓名: ");
     scanf("%s", search_name);
     int found = 0;
+    int i;
 
-    for (int i = 0; i < student_count; i++) {
+    for ( i = 0; i < student_count; i++) {
         if (strcmp(students[i].name, search_name) == 0) {
             printf("姓名: %s, 學號: %d, 數學: %d, 物理: %d, 英文: %d, 平均: %.1f\n", 
                 students[i].name, students[i].student_id, students[i].math, students[i].physics, students[i].english, students[i].average);
@@ -199,12 +202,13 @@ void search_student_grades() {
 // 成績排名
 void grade_ranking() {
     clear_screen();
+    int i,j;
     if (student_count == 0) {
         printf("目前沒有學生資料。\n");
     } else {
         // 排序
-        for (int i = 0; i < student_count - 1; i++) {
-            for (int j = 0; j < student_count - i - 1; j++) {
+        for ( i = 0; i < student_count - 1; i++) {
+            for ( j = 0; j < student_count - i - 1; j++) {
                 if (students[j].average < students[j + 1].average) {
                     Student temp = students[j];
                     students[j] = students[j + 1];
@@ -212,7 +216,7 @@ void grade_ranking() {
                 }
             }
         }
-        for (int i = 0; i < student_count; i++) {
+        for ( i = 0; i < student_count; i++) {
             printf("姓名: %s, 學號: %d, 平均: %.1f\n", students[i].name, students[i].student_id, students[i].average);
         }
     }
