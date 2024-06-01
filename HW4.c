@@ -63,11 +63,11 @@ void main_menu() {
     while (1) {
     	clear_screen();
         printf("------------[Grade System]----------\n");
-        printf("    |  a. Enter student grades             |\n");
-        printf("    |  b. Display student grades         |\n");
-        printf("    |  c. Search for student grades    |\n");
-        printf("    |  d. Grade ranking                        |\n");
-        printf("    |  e. Exit system                               |\n");
+        printf("    |  a. 輸入學生成績             |\n");
+        printf("    |  b. 顯示學生成績             |\n");
+        printf("    |  c. 搜尋學生成績             |\n");
+        printf("    |  d. 成績排行                 |\n");
+        printf("    |  e. 離開系統                 |\n");
         printf("------------------------------------\n");
         printf("請輸入選項: ");
         scanf(" %c", &choice);
@@ -162,8 +162,8 @@ void display_student_grades() {
         printf("目前沒有學生資料。\n");
     } else {
         for ( i = 0; i < student_count; i++) {
-            printf("第%d名姓名: %s, 學號: %d, 數學: %d, 物理: %d, 英文: %d, 平均: %.1f\n", 
-                i+1,students[i].name, students[i].student_id, students[i].math, students[i].physics, students[i].english, students[i].average);
+            printf("姓名: %s, 學號: %d, 數學: %d, 物理: %d, 英文: %d, 平均: %.1f\n", 
+                students[i].name, students[i].student_id, students[i].math, students[i].physics, students[i].english, students[i].average);
         }
     }
     printf("按下任意鍵返回主選單。\n");
@@ -216,7 +216,7 @@ void grade_ranking() {
             }
         }
         for ( i = 0; i < student_count; i++) {
-            printf("姓名: %s, 學號: %d, 平均: %.1f\n", students[i].name, students[i].student_id, students[i].average);
+            printf("第%d名姓名: %s, 學號: %d, 平均: %.1f\n",i+1, students[i].name, students[i].student_id, students[i].average);
         }
     }
     printf("按下任意鍵返回主選單。\n");
