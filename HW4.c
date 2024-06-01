@@ -119,7 +119,6 @@ void enter_student_grades() {
             if (students[student_count].student_id >= 100000 && students[student_count].student_id <= 999999) {
                 break;
             }
-            printf("請輸入6位數的學號。\n");
         }
 
         while (1) {
@@ -128,7 +127,7 @@ void enter_student_grades() {
             if (students[student_count].math >= 0 && students[student_count].math <= 100) {
                 break;
             }
-            printf("請輸入0到100之間的分數。\n");
+            printf("請輸入0到100之間的分數!!\n");
         }
 
         while (1) {
@@ -137,7 +136,7 @@ void enter_student_grades() {
             if (students[student_count].physics >= 0 && students[student_count].physics <= 100) {
                 break;
             }
-            printf("請輸入0到100之間的分數。\n");
+            printf("請輸入0到100之間的分數!!\n");
         }
 
         while (1) {
@@ -146,7 +145,7 @@ void enter_student_grades() {
             if (students[student_count].english >= 0 && students[student_count].english <= 100) {
                 break;
             }
-            printf("請輸入0到100之間的分數。\n");
+            printf("請輸入0到100之間的分數!!\n");
         }
 
         students[student_count].average = calculate_average(students[student_count].math, students[student_count].physics, students[student_count].english);
@@ -163,8 +162,8 @@ void display_student_grades() {
         printf("目前沒有學生資料。\n");
     } else {
         for ( i = 0; i < student_count; i++) {
-            printf("姓名: %s, 學號: %d, 數學: %d, 物理: %d, 英文: %d, 平均: %.1f\n", 
-                students[i].name, students[i].student_id, students[i].math, students[i].physics, students[i].english, students[i].average);
+            printf("第%d名姓名: %s, 學號: %d, 數學: %d, 物理: %d, 英文: %d, 平均: %.1f\n", 
+                i+1,students[i].name, students[i].student_id, students[i].math, students[i].physics, students[i].english, students[i].average);
         }
     }
     printf("按下任意鍵返回主選單。\n");
